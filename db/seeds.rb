@@ -7,6 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-	User.create(name: "Daniel", city: "Santa Monica")
-	User.create(name: "Nick", city: "Santa Monica")
-	User.create(name: "Sylvia", city: "Santa Monica")
+	User.create(name: "Daniel", rating: 4, location: "Newport Beach")
+	User.create(name: "Nick", rating: 5, location: "Santa Monica")
+	User.create(name: "Sylvia", rating: 5, location: "Santa Monica")
+
+	Photographer.create(name: "Vishnu", location: "New York City", available: true )

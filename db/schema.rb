@@ -17,8 +17,20 @@ ActiveRecord::Schema.define(version: 20131112012540) do
   enable_extension "plpgsql"
 
   create_table "users", force: true do |t|
+    t.string   "type"
+    t.string   "act_primary"
+    t.string   "act_secondary"
     t.string   "name"
-    t.string   "city"
+    t.string   "avatar"
+    t.string   "location"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.integer  "rating"
+    t.integer  "radius"
+    t.string   "camera"
+    t.string   "bio"
+    t.string   "fact"
+    t.boolean  "available"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
