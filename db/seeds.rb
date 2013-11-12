@@ -8,3 +8,5 @@
 
 
 	User.create(name: "Daniel", city: "Santa Monica")
+	User.create(name: "Nick", city: "Santa Monica")
+	User.create(name: "Sylvia", city: "Santa Monica")
