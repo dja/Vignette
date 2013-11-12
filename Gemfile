@@ -9,6 +9,8 @@ gem 'pg'
 gem 'rspec'
 gem 'omniauth-facebook'
 
+gem 'figaro'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
