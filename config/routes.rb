@@ -1,5 +1,6 @@
 Vignette::Application.routes.draw do
   
+  root 'home#index'
   resources :customers, :sessions
 
   get 'signup', to: 'customers#new', as: 'signup'
