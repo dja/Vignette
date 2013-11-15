@@ -1,0 +1,22 @@
+<header class="navigation" id="navigation">
+<h1><a href="/">Vignette</a></h1>
+<nav>
+	<ul>
+		<% if current_user %>
+		<li>
+			<%= current_user.email %>
+		</li>
+		<span><%= link_to "", logout_path, class: "ion-power" %></span>
+		<li>
+			<%= link_to "Log Out", logout_path %>
+		</li>
+		<% else %>
+		<li>
+			<%= link_to "Sign Up", signup_path %> or
+			<%= link_to "Log In", login_path %>
+			<%= link_to "Facebook Login", "/auth/facebook"%>
+		</li>
+		<% end %>
+	</ul>
+</nav>
+</header>

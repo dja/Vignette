@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20131113040711) do
 
   create_table "users", force: true do |t|
     t.string   "type"
+    t.string   "name"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
@@ -60,6 +61,10 @@ ActiveRecord::Schema.define(version: 20131113040711) do
     t.string   "bio"
     t.string   "fact"
     t.boolean  "available"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -3,12 +3,18 @@ class SessionsController < ApplicationController
   def new
   end
 
+
   def create
-    auth = request.env["omniauth.auth"]
-    user = User.where(provider: auth['provider'],
-                      uid: auth['uid']).first || User.create_with_omniauth(auth)
-    session[:user_id] = user.id
-    redirect_to user_path(user), notice: "Signed in!"
+    if session[:user_type] = "Customer"
+      customer = Customer.from_omniauth(env["omniauth.auth"])
+      session[:user_id] = customer.id
+    elsif session[:user_type] = "Photographer"
+      photographer = Photographer.from_omniauth(env["omniauth.auth"])
+      session[:user_id] = photographer.id
+    elsif session[:user_type] = nil
+      redirect_to root_url
+    end
+    redirect_to root_url
   end
 
   def destroy
