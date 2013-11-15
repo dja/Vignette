@@ -5,13 +5,13 @@ class SessionsController < ApplicationController
 
 
   def create
-    if session[:user_type] = "Customer"
+    if session[:user_type] == "Customer"
       customer = Customer.from_omniauth(env["omniauth.auth"])
       session[:user_id] = customer.id
-    elsif session[:user_type] = "Photographer"
+    elsif session[:user_type] == "Photographer"
       photographer = Photographer.from_omniauth(env["omniauth.auth"])
       session[:user_id] = photographer.id
-    elsif session[:user_type] = nil
+    elsif session[:user_type] == nil
       redirect_to root_url
     end
     redirect_to root_url
