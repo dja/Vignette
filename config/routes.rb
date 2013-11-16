@@ -1,7 +1,7 @@
 Vignette::Application.routes.draw do
   
   root 'home#index'
-  resources :sessions, :customers, :photographers
+  resources :sessions, :customers, :photographers, :users
 
   get 'customers/:id', to: 'customers#show'
   get 'photographers/:id', to: 'photographers#show'
