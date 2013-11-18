@@ -1,4 +1,10 @@
-Photographer:
+Welcome Back, <%= @photographer.first_name %> <%= @photographer.last_name %>
+
 <%= image_tag @photographer.image %>
-<%= @photographer.name %>
-<%= @photographer.email %>
+
+<%= @photographer.user_location %>
+<%= @photographer.latitude %> <%= @photographer.longitude %>
+<%= @photographer.rating %>
+<%= @photographer.available %>
+<%= @photographer.bio %>
+<%= @photographer.fact %>
