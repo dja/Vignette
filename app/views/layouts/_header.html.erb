@@ -4,7 +4,7 @@
 	<ul>
 		<% if current_user %>
 		<li>
-			<%= current_user.email %>
+			<%= link_to current_user.name, current_user %>
 		</li>
 		<span><%= link_to "", logout_path, class: "ion-power" %></span>
 		<li>
@@ -14,7 +14,6 @@
 		<li>
 			<%= link_to "Sign Up", signup_path %> or
 			<%= link_to "Log In", login_path %>
-			<%= link_to "Facebook Login", "/auth/facebook"%>
 		</li>
 		<% end %>
 	</ul>

@@ -1,19 +1,14 @@
 <div class="container">
 	<div class="main-container profile">
-		<img src=<%= @photographer.image %> alt="">
-		<h3><%= @photographer.name %></h3>
-		<h5><%= @photographer.email %></h5>
+		<img src=<%= @customer.image %> alt="">
+		<h3><%= @customer.name %></h3>
+		<h5><%= @customer.email %></h5>
 		<div class="user-location">
 			<input type="text" name="" value="" placeholder="Address" id="address">
 			<input type="text" name="" value="" placeholder="City" id="city">
 			<input type="text" name="" value="" placeholder="State" id="state">
 			<input type="text" name="" value="" pattern="[0-9]*" maxlength="5" required placeholder="ZIP" id="zip">
 		</div>
-		<div class="camera">
-			<input type="text" name="" value="" placeholder="camera equipment">
-		</div>
-		<input type="textarea" name="" value="" placeholder="Tell us about you as a photographer">
-		<input type="text" name="" value="" placeholder="One random fact about you">
 	</div>
 </div>
 

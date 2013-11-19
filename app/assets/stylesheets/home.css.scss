@@ -1,3 +1,96 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$primarytext: #b6b6b6;
+$maincolor: #b6b6b6;
+
+body {
+	width: 100%;
+	height: 100%;
+	background-image:url('/bg1.jpg');
+	background-attachment:fixed;
+	box-shadow: inset 0 0 500px black;
+}
+
+/* NAVIGATION */
+
+header {
+	width: 100%;
+	z-index: 40;
+	top: 0;
+	position:fixed;
+	background-color: transparent;
+	padding: 10px 0;
+	transition: all 200ms linear;
+	-webkit-transition: all 200ms linear;
+	-moz-transition: all 200ms linear;
+	-o-transition: all 200ms linear;
+}
+
+.fixed {
+	background-color: #191919;
+}
+
+.navigation h1 {
+	font-family: 'Landmark Inline A', 'Landmark Inline B';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 46px;
+	color: #343434;
+	position:absolute;
+	margin: 0 0 0 20px;
+}
+
+.navigation h1 a:link, .navigation h1 a:visited {
+	color: #343434;
+	text-decoration: none;
+	transition: all 500ms linear;
+	-webkit-transition: all 500ms linear;
+	-moz-transition: all 500ms linear;
+	-o-transition: all 500ms linear;
+}
+
+.navigation h1 a:hover {
+	color: $primarytext;
+}
+
+.navigation ol, .navigation ul {
+	list-style-type: none;
+	float: right;
+	margin: 15px 20px 15px 0;
+}
+
+.navigation li:first-child {
+	margin-right:6px;
+}
+
+.navigation span {
+	display: none;
+}
+
+.navigation li {
+	display: inline;
+	font-size: 15px;
+	margin-right: 6px;
+	color: #7f7f7f;
+}
+
+a#nav_name, a#nav_name:hover, a#nav_name:link, a#nav_name:visited {
+	color: $primarytext;
+}
+
+.navigation li a:link, .navigation li a:visited, .navigation li a:hover {
+	text-decoration: none;
+	color: $maincolor;
+	font-family: 'Gotham SSm A', 'Gotham SSm B';
+	font-weight: 500;
+}
+
+
+/* FOOTER */
+
+footer {
+	height: 40px;
+	text-align: center;
+}

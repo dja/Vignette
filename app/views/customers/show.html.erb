@@ -1,4 +1,9 @@
-Photographer:
-<%= image_tag @customer.image %>
-<%= @customer.name %>
-<%= @customer.email %>
+<div class="container">
+	<div class="main-container profile">
+		<img src=<%= @customer.image %> alt="">
+		<h3><%= @customer.name %></h3>
+		<h5><%= @customer.email %></h5>
+		<div class="user-location">
+		</div>
+	</div>
+</div>

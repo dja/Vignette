@@ -1,10 +1,30 @@
-Welcome Back, <%= @photographer.first_name %> <%= @photographer.last_name %>
-
-<%= image_tag @photographer.image %>
-
-<%= @photographer.user_location %>
-<%= @photographer.latitude %> <%= @photographer.longitude %>
-<%= @photographer.rating %>
-<%= @photographer.available %>
-<%= @photographer.bio %>
-<%= @photographer.fact %>
+<div class="container">
+	<div class="main-container profile">
+		<div class="profile-header">
+			<img src=<%= @photographer.image %> alt="">
+			<h3><%= @photographer.name %></h3>
+			<h5><%= @photographer.email %></h5>
+			<a>Santa Monica, CA</a>
+		</div>
+		
+		<div class="incoming-requests">
+			<div class="notification">
+				<div class="customer-info">
+					<img src=<%= @photographer.image %> alt="">
+					<h3>Customer's name</h3>
+					<i class="ion-navigate"></i><a>2.0 mi</a>
+				</div>
+				<div class="request-response">
+					<button type="button" id="accept">Accept</button>
+					<button type="button" id="decline">Decline</button>
+				</div>
+			</div>
+		</div>
+		<div class="camera">
+			<%= @photographer.camera %>
+		</div>
+		<div class="bio"><%= @photographer.bio %></div>
+		<div class="fact"><%= @photographer.fact %></div>
+		<%= link_to "Edit Profile", edit_photographer_url %>
+	</div>
+</div>

@@ -9,12 +9,15 @@ class SessionsController < ApplicationController
       customer = Customer.from_omniauth(env["omniauth.auth"])
       session[:user_id] = customer.id
       session[:user_type] = nil
+      redirect_to customer
     elsif session[:user_type] == "Photographer"
       photographer = Photographer.from_omniauth(env["omniauth.auth"])
       session[:user_id] = photographer.id
       session[:user_type] = nil
+      redirect_to photographer
+    else
+      redirect_to root_url
     end
-    redirect_to root_url
   end
 
   def destroy

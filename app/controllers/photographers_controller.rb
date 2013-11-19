@@ -7,14 +7,21 @@ class PhotographersController < ApplicationController
 	end
 
 	def create
-		redirect_to customers_url
+		redirect_to photographers_url
 	end
 
 	def show
-		respond_with(@photographer)
+		if @photographer == current_user
+			respond_with(@photographer)
+		else
+			redirect_to root_url
+		end
 	end
 
 	def edit
+		if @photographer != current_user
+			redirect_to root_url
+		end
 	end
 
 	def update

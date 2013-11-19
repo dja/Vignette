@@ -3,6 +3,7 @@
 <head>
   <title>Vignette</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+<link rel="stylesheet" type="text/css" href="//cloud.typography.com/7830452/730502/css/fonts.css" />
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -11,6 +12,18 @@
 <%= render 'layouts/header' %>
 
 <%= yield %>
+
+<%= render 'layouts/footer' %>
+
+<script>
+$(document).on("scroll",function(){
+    if($(document).scrollTop()>70){
+        $("header").addClass("fixed");
+    } else{
+        $("header").removeClass("fixed");
+    }
+});
+</script>
 
 </body>
 </html>
