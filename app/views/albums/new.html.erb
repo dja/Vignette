@@ -1,0 +1,91 @@
+<% content_for :head do %>
+  <title>Request a Photographer</title>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-eEGhus9zRE4SpPYdnsA5bA1enVe790k&sensor=false"></script>
+  <script src="//google-maps-utility-library-v3.googlecode.com/svn/trunk/geolocationmarker/src/geolocationmarker-compiled.js"></script>
+  <script type="text/javascript">
+  //map function
+    var map, GeoMarker;
+  
+    function initialize() {
+      var mapOptions = {
+        zoom: 17,
+        center: new google.maps.LatLng(-34.397, 150.644),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      map = new google.maps.Map(document.getElementById('loc_map'),
+          mapOptions);
+  
+      GeoMarker = new GeolocationMarker();
+      GeoMarker.setCircleOptions({fillColor: '#808080'});
+
+      google.maps.event.addListenerOnce(GeoMarker, 'position_changed', function() {
+        map.setCenter(this.getPosition());
+        map.fitBounds(this.getBounds());
+      });
+
+      google.maps.event.addListener(GeoMarker, 'geolocation_error', function(e) {
+        alert('There was an error obtaining your position. Message: ' + e.message);
+      });
+
+      GeoMarker.setMap(map);
+
+      //create and place marker for each location in database, include info windows for those markers
+
+      var infowindow = new google.maps.InfoWindow();
+
+      <% @locations.each do |l| %>
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(<%= l.lat %>, <%= l.long %>),
+          map: map,
+          icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker) {
+          return function() {
+            infowindow.setContent("<b><%= l.name %></b><br /><%= l.phone %>");
+            infowindow.open(map, marker);
+          }
+        }) (marker));
+      <% end %>
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+    
+    if(!navigator.geolocation) {
+      alert('Your browser does not support geolocation');
+    }
+
+  // switching between list and map
+  function show_map(){
+    document.getElementById("loc_list").style.display = "none";
+    document.getElementById("loc_map").style.display = "block";
+    var list = document.getElementById("List");
+      list.style.boxShadow = "none";
+      list.style.mozBoxShadow = "none";
+      list.style.webkitBoxShadow = "none";
+      list.style.border = "none";
+      list.style.color = "rgb(61, 71, 81)";
+    var map = document.getElementById("Map");
+      map.style.boxShadow = "0px 3px 5px #323232";
+      map.style.mozBoxShadow = "0px 3px 5px #323232";
+      map.style.webkitBoxShadow = "0px 3px 5px #323232";
+      map.style.color = "rgb(232, 215, 215)";
+  }
+
+  function show_list(){
+    document.getElementById("loc_map").style.display = "none";
+    document.getElementById("loc_list").style.display = "block";
+    var map = document.getElementById("Map");
+      map.style.boxShadow = "none";
+      map.style.mozBoxShadow = "none";
+      map.style.webkitBoxShadow = "none";
+      map.style.border = "none";
+      map.style.color = "rgb(61, 71, 81)";
+    var list = document.getElementById("List");
+      list.style.boxShadow = "0px 3px 5px #323232";
+      list.style.mozBoxShadow = "0px 3px 5px #323232";
+      list.style.webkitBoxShadow = "0px 3px 5px #323232";
+      list.style.color = "rgb(232, 215, 215)"
+  }
+  </script>
+<% end %>
