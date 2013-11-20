@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131113040711) do
+ActiveRecord::Schema.define(version: 20131120050243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,20 @@ ActiveRecord::Schema.define(version: 20131113040711) do
 
   add_index "albums", ["customer_id"], name: "index_albums_on_customer_id", using: :btree
   add_index "albums", ["photographer_id"], name: "index_albums_on_photographer_id", using: :btree
+
+  create_table "invitations", force: true do |t|
+    t.integer  "sender_id"
+    t.string   "recipient_email"
+    t.string   "token"
+    t.datetime "sent_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mailers", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "photos", force: true do |t|
     t.integer  "album_id"
@@ -67,6 +81,8 @@ ActiveRecord::Schema.define(version: 20131113040711) do
     t.datetime "oauth_expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "invitation_id"
+    t.integer  "invitation_limit"
   end
 
 end

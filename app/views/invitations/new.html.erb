@@ -1,0 +1,20 @@
+<div class="container">
+	<div class="main-container signup">
+		<h3>Welcome</h3>
+		<h5>to</h5>
+		<h3>Vignette</h3>
+		<%= form_for Invitation.new do |f| %>
+		  <p>
+		    <%= f.text_field :recipient_email, placeholder: "Enter your Email" %>
+		  </p>
+		  <p><%= f.submit "Request Invite!" %></p>
+		<% end %>
+		<% if @invitation.errors.any? %>
+		<ul>
+		  <% @invitation.errors.full_messages.each do |msg| %>
+		    <li><%= msg %></li>
+		  <% end %>
+		</ul>
+		<% end %>
+	</div>
+</div>

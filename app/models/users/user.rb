@@ -19,4 +19,26 @@ class User < ActiveRecord::Base
 	      user.save!
 	    end
   	end
+
+
+  	validates :invitation_id, presence: true, uniqueness: true
+
+	has_many :sent_invitations, class_name: 'Invitation', foreign_key: 'sender_id'
+	belongs_to :invitation
+
+	before_create :set_invitation_limit
+
+	def invitation_token
+	  invitation.token if invitation
+	end
+
+	def invitation_token=(token)
+	  self.invitation = Invitation.find_by_token(token)
+	end
+
+	private
+
+	def set_invitation_limit
+	  self.invitation_limit = 5
+	end
 end
