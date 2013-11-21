@@ -32,7 +32,7 @@ config.action_mailer.default_options = {from: 'me@danieljacobarcher.com'}
     port:                 587,
     domain:               'danieljacobarcher.com',
     user_name:            'me@danieljacobarcher.com',
-    password:             'Jacob2014',
+    password:             '',
     authentication:       'plain',
     enable_starttls_auto: true  }
 

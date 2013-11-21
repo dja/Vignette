@@ -2,21 +2,30 @@ require 'json'
 class SessionsController < ApplicationController
 
   def new
+    invite = Invitation.find_by_token(params[:invitation_token])
+    session[:current_token] = invite
+    @user_type = invite.user_type
   end
 
   def create
-    if session[:user_type] == "Customer"
-      customer = Customer.from_omniauth(env["omniauth.auth"])
-      session[:user_id] = customer.id
-      session[:user_type] = nil
-      redirect_to customer
-    elsif session[:user_type] == "Photographer"
-      photographer = Photographer.from_omniauth(env["omniauth.auth"])
-      session[:user_id] = photographer.id
-      session[:user_type] = nil
-      redirect_to photographer
+    if session[:current_token] == nil
+      redirect_to signup_url
     else
-      redirect_to root_url
+      invite = session[:current_token]
+      session[:current_token] = nil
+      if invite.user_type == "Customer"
+        @customer = Customer.from_omniauth(env["omniauth.auth"])
+        session[:user_id] = @customer.id
+        invite.destroy
+        redirect_to @customer
+      elsif invite.user_type == "Photographer"
+        photographer = Photographer.from_omniauth(env["omniauth.auth"])
+        session[:user_id] = photographer.id
+        invite.destroy
+        redirect_to photographer
+      else
+        redirect_to root_url
+      end
     end
   end
 

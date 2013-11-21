@@ -10,7 +10,6 @@ gem 'rspec'
 gem 'omniauth-facebook'
 
 gem 'figaro'
-gem 'beta_invite', github: 'ktkaushik/beta_invite'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

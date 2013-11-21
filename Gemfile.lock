@@ -1,10 +1,3 @@
-GIT
-  remote: git://github.com/ktkaushik/beta_invite.git
-  revision: 29bd51b890dcb6a652636b54a7909dd6e0f0cd7e
-  specs:
-    beta_invite (1.0.0)
-      rails (> 3.2.x)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -206,7 +199,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  beta_invite!
   capybara
   coffee-rails (~> 4.0.0)
   factory_girl_rails

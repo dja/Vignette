@@ -3,11 +3,10 @@ class CustomersController < ApplicationController
 	respond_to :html
 
 	def new
-		session[:user_type] = "Customer"
 	end
 
 	def create
-		redirect_to customer_url
+		redirect_to @customer
 	end
 
 	def show

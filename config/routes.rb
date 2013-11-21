@@ -6,8 +6,8 @@ Vignette::Application.routes.draw do
   get 'customers/:id', to: 'customers#show'
   get 'photographers/:id', to: 'photographers#show'
 
-  get '/signup/:invitation_token', to: 'users#new', as: 'signup'
-  # get 'signup', to: 'customers#new', as: 'signup'
+  get '/earlyaccess/:invitation_token', to: 'sessions#new', as: 'earlyaccess'
+  get 'signup', to: 'customers#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   

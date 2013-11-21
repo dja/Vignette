@@ -3,7 +3,12 @@
 		<h3>Welcome</h3>
 		<h5>to</h5>
 		<h3>Vignette</h3>
-		<input type="text" name="InviteCode" value="" placeholder="Enter Invite Code">
+		<%= form_for @customer do |c| %>
+		<%= c.hidden_field :invitation_token %>
+		<%= c.text_field :email, placeholder: 'email' %>
+		<!-- <input type="text" name="InviteCode" value="" placeholder="Enter Invite Code"> -->
+		<%= c.submit 'Sign up' %>
+		<% end %>
 		<%= button_to "Sign Up with Facebook", "/auth/facebook"%>
 	</div>
 </div>
