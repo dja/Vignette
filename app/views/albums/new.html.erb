@@ -2,8 +2,6 @@
 
   <title>Request a Photographer</title>
 
-<button type="button" id="reserve-btn"><a>Reserve Photographer Here:</a><br></button>
-
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-eEGhus9zRE4SpPYdnsA5bA1enVe790k&sensor=false" type="text/javascript"></script>
   
 <script src='//google-maps-utility-library-v3.googlecode.com/svn/trunk/geolocationmarker/src/geolocationmarker-compiled.js' type='text/javascript'></script>
@@ -21,7 +19,11 @@
       var mapOptions = {
         zoom: 18,
         center: new google.maps.LatLng(-34.397, 150.644),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        panControl: false,
+        streetViewControl: false,
+        zoomControl: true,
+        zoomControlOptions: { position: google.maps.ControlPosition.LEFT_CENTER }
       };
 
       map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -66,16 +68,6 @@
         if (status == google.maps.GeocoderStatus.OK) {
           if (results[1]) {
             $('#reserve-btn').html('<a>Reserve Photographer Here:</a><br>'+results[1].formatted_address);
-            $('#reserve-btn').click(function(){
-              $.ajax({
-                type    : 'POST',
-                url     : "/albums", 
-                data    : { album: { lat: lat, lng: lng } },
-                success : function(data) {
-                            alert(data);          
-                          },  
-              });
-            });
           } else {
             alert('No results found');
           }
@@ -93,6 +85,8 @@
   </script>
 <% end %>
 
+<button type="button" id="reserve-btn"><a>Reserve Photographer Here:</a><br></button>
+
 <div id="map-canvas">
 </div>
 
@@ -101,8 +95,8 @@
     $("#reserve-btn").click(function(){
        $.ajax({
                 type    : 'POST',
-                url     : "/albums/new", 
-                data    : { lat: map.getCenter().ob, lng: map.getCenter().pb },
+                url     : "/albums", 
+                data    : { album: {lat: map.getCenter().ob, lng: map.getCenter().pb }},
                 success : function(data) {
                             alert(map.getCenter());          
                           },  
