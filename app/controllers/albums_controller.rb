@@ -6,7 +6,12 @@ class AlbumsController < ApplicationController
 	end
 
 	def create
-		@album = Album.new(album_params)
+		@album = Album.new params['album']
+		if @album.save
+			render :json => { }
+		else
+			render :json => { }, status: 404
+		end
 	end
 
 	def show

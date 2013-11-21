@@ -95,7 +95,9 @@
     $("#reserve-btn").click(function(){
        $.ajax({
                 type    : 'POST',
-                url     : "/albums", 
+                url     : "/albums",
+                dataType: 'json',
+                processData: false,
                 data    : { album: {lat: map.getCenter().ob, lng: map.getCenter().pb }},
                 success : function(data) {
                             alert(map.getCenter());          
