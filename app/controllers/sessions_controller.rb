@@ -3,8 +3,12 @@ class SessionsController < ApplicationController
 
   def new
     invite = Invitation.find_by_token(params[:invitation_token])
-    session[:current_token] = invite
-    @user_type = invite.user_type
+    if invite != nil
+      session[:current_token] = invite
+      @user_type = invite.user_type
+    else
+      redirect_to new_invitation_url
+    end
   end
 
   def create

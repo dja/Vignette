@@ -1,7 +1,7 @@
 Vignette::Application.routes.draw do
   
   root 'home#index'
-  resources :sessions, :customers, :photographers, :users, :invitations
+  resources :sessions, :customers, :photographers, :users, :invitations, :albums
 
   get 'customers/:id', to: 'customers#show'
   get 'photographers/:id', to: 'photographers#show'
@@ -16,4 +16,5 @@ Vignette::Application.routes.draw do
   match '/auth/failure', to: redirect('/'), via: [:get, :post]
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get, :post]
 
+  post 'albums/new', to: 'albums#new'
 end

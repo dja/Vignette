@@ -3,9 +3,6 @@ class PhotographersController < ApplicationController
 	respond_to :html
 
 	def new
-		session[:user_type] = "Photographer"
-		@photographer = Photographer.new(:invitation_token => params[:invitation_token])
-		@photographer.email = @photographer.invitation.recipient_email if @photographer.invitation
 	end
 
 	def create

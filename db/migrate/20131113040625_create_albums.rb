@@ -7,7 +7,7 @@ class CreateAlbums < ActiveRecord::Migration
       t.references :customer, index: true
       t.string :camera
       t.string :lat
-      t.string :long
+      t.string :lng
       t.string :location
 
       t.timestamps
