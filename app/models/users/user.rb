@@ -2,9 +2,7 @@ class User < ActiveRecord::Base
 
 	def self.from_omniauth(auth)
 	    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-	    	if Invitation.find_by_email(auth.info.email) != false
-	    		return 'not ready'
-	    	elsif user.new_record? # Remove these ifs after beta period
+	    	if User.find_by_email(auth.info.email) == nil # Remove these ifs after beta period
 	    		return 'closed'
 	    	else
 		      	user.provider = auth.provider

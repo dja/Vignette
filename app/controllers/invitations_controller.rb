@@ -21,6 +21,9 @@ class InvitationsController < ApplicationController
 	  end
 	end
 
+	def notready
+	end
+
 	def destroy
 		Invitation.find(invitation_params).destroy
 	end

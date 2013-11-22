@@ -27,7 +27,9 @@ class SessionsController < ApplicationController
     else
       invite = session[:current_token]
       session[:current_token] = nil
-      if invite.user_type == "Customer"
+      if invite.sent_at == nil
+        redirect_to notready_url # Change to be a Not Ready Yet page
+      elsif invite.user_type == "Customer"
         @customer = Customer.from_omniauth(env["omniauth.auth"])
         session[:user_id] = @customer.id
         invite.destroy
