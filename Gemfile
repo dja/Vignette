@@ -11,6 +11,10 @@ gem 'omniauth-facebook'
 
 gem 'figaro'
 
+gem 'aws-sdk' # S3 API
+gem 'paperclip' # file attachment syntax and callbacks
+gem 's3_direct_upload' # direct upload form helper and assets
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 gem 'normalize-rails'
