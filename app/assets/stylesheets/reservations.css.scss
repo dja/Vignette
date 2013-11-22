@@ -1,4 +1,4 @@
-// Place all the styles related to the Albums controller here.
+// Place all the styles related to the Reservations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
@@ -15,6 +15,15 @@ body {
 
 #map-canvas { 
   height: 100%;
+}
+
+i.ion-pinpoint {
+  position: fixed;
+  font-size: 80px;
+  color: red;
+  top: 43%;
+  left: 50%;
+  z-index: 99999;
 }
 
 button#reserve-btn {

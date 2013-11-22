@@ -1,6 +1,6 @@
-class CreateAlbums < ActiveRecord::Migration
+class CreateReservations < ActiveRecord::Migration
   def change
-    create_table :albums do |t|
+    create_table :reservations do |t|
       t.string :name
       t.datetime :date
       t.references :photographer, index: true

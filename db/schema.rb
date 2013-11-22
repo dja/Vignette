@@ -16,22 +16,6 @@ ActiveRecord::Schema.define(version: 20131120050243) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "albums", force: true do |t|
-    t.string   "name"
-    t.datetime "date"
-    t.integer  "photographer_id"
-    t.integer  "customer_id"
-    t.string   "camera"
-    t.string   "lat"
-    t.string   "long"
-    t.string   "location"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "albums", ["customer_id"], name: "index_albums_on_customer_id", using: :btree
-  add_index "albums", ["photographer_id"], name: "index_albums_on_photographer_id", using: :btree
-
   create_table "invitations", force: true do |t|
     t.integer  "sender_id"
     t.string   "recipient_email"
@@ -48,12 +32,28 @@ ActiveRecord::Schema.define(version: 20131120050243) do
   end
 
   create_table "photos", force: true do |t|
-    t.integer  "album_id"
+    t.integer  "reservation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "photos", ["album_id"], name: "index_photos_on_album_id", using: :btree
+  add_index "photos", ["reservation_id"], name: "index_photos_on_reservation_id", using: :btree
+
+  create_table "reservations", force: true do |t|
+    t.string   "name"
+    t.datetime "date"
+    t.integer  "photographer_id"
+    t.integer  "customer_id"
+    t.string   "camera"
+    t.string   "lat"
+    t.string   "lng"
+    t.string   "location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reservations", ["customer_id"], name: "index_reservations_on_customer_id", using: :btree
+  add_index "reservations", ["photographer_id"], name: "index_reservations_on_photographer_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "type"

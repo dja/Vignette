@@ -13,5 +13,5 @@
 
 	p = Photographer.create(name: "Vishnu", user_location: "New York City", available: true, meetup_location: "Brooklyn Bridge" )
 
-	a = Album.create(name: "Europe Trip", photographer: p, customer: c, location: "Paris, France")
-	Photo.create(album: a)
+	a = Reservation.create(name: "Europe Trip", photographer: p, customer: c, location: "Paris, France")
+	Photo.create(reservation: a)

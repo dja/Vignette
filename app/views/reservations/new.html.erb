@@ -10,6 +10,8 @@
     var map;
     var GeoMarker;
     var infowindow = new google.maps.InfoWindow();
+    var reservation_name;
+    var reservation_location;
   
     function initialize() {
       
@@ -67,6 +69,8 @@
       geocoder.geocode({'latLng': latlng}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           if (results[1]) {
+            reservation_name = results[1].address_components[1].long_name;
+            reservation_location = results[1].formatted_address;
             $('#reserve-btn').html('<a>Reserve Photographer Here:</a><br>'+results[1].formatted_address);
           } else {
             alert('No results found');
@@ -85,7 +89,9 @@
   </script>
 <% end %>
 
+
 <button type="button" id="reserve-btn"><a>Reserve Photographer Here:</a><br></button>
+<i class="ion-pinpoint"></i>
 
 <div id="map-canvas">
 </div>
@@ -93,16 +99,9 @@
 <script>
   $(function(){
     $("#reserve-btn").click(function(){
-       $.ajax({
-                type    : 'POST',
-                url     : "/albums",
-                dataType: 'json',
-                processData: false,
-                data    : { album: {lat: map.getCenter().ob, lng: map.getCenter().pb }},
-                success : function(data) {
-                            alert(map.getCenter());          
-                          },  
-              });
+      $.post('/reservations', { name: reservation_name, location: reservation_location, lat: map.getCenter().ob, lng: map.getCenter().pb }, function(data,status){
+        window.location.href = data.url;
+      });
     });
   });
 </script>
