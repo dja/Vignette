@@ -3,17 +3,27 @@ class SessionsController < ApplicationController
 
   def new
     invite = Invitation.find_by_token(params[:invitation_token])
-    if invite != nil
-      session[:current_token] = invite
-      @user_type = invite.user_type
-    else
-      redirect_to new_invitation_url
-    end
+    session[:current_token] = invite
   end
 
   def create
     if session[:current_token] == nil
-      redirect_to signup_url
+      user = User.from_omniauth(env["omniauth.auth"])
+      if user == 'not ready'
+        redirect_to root_url
+      elsif user == 'closed'
+        redirect_to new_invitation_url
+      elsif user.type == "Customer"
+        @customer = user
+        session[:user_id] = @customer.id
+        redirect_to @customer
+      elsif user.type == "Photographer"
+        @photographer = user
+        session[:user_id] = @photographer.id
+        redirect_to @photographer
+      else
+        redirect_to new_invitation_url
+      end
     else
       invite = session[:current_token]
       session[:current_token] = nil
@@ -23,10 +33,10 @@ class SessionsController < ApplicationController
         invite.destroy
         redirect_to @customer
       elsif invite.user_type == "Photographer"
-        photographer = Photographer.from_omniauth(env["omniauth.auth"])
-        session[:user_id] = photographer.id
+        @photographer = Photographer.from_omniauth(env["omniauth.auth"])
+        session[:user_id] = @photographer.id
         invite.destroy
-        redirect_to photographer
+        redirect_to @photographer
       else
         redirect_to root_url
       end

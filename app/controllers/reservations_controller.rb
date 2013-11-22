@@ -6,7 +6,7 @@ class ReservationsController < ApplicationController
 	end
 
 	def create
-		@reservation = Reservation.new(name: params[:name], location: params[:location], lat: params[:lat], lng: params[:lng], date: Time.now)
+		@reservation = Reservation.new(customer: current_user, name: params[:name], location: params[:location], lat: params[:lat], lng: params[:lng], date: Time.now)
 		if @reservation.save!
 			render :status => :ok, :json => { status: 'SUCCESS', url: reservation_path(@reservation) }
 		else
