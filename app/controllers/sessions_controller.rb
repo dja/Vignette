@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
   def create
     if session[:current_token] == nil
-      user = User.from_omniauth(env["omniauth.auth"])
+      user = User.login_from_omniauth(env["omniauth.auth"])
       if user == 'not ready'
         redirect_to root_url
       elsif user == 'closed'
@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
       invite = session[:current_token]
       session[:current_token] = nil
       if invite.sent_at == nil
-        redirect_to notready_url # Change to be a Not Ready Yet page
+        redirect_to notready_url
       elsif invite.user_type == "Customer"
         @customer = Customer.from_omniauth(env["omniauth.auth"])
         session[:user_id] = @customer.id
