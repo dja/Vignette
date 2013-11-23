@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120050243) do
+ActiveRecord::Schema.define(version: 20131123000947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "albums", force: true do |t|
+    t.integer  "user_id",                             null: false
+    t.string   "direct_upload_url",                   null: false
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
+    t.boolean  "processed",           default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "albums", ["processed"], name: "index_albums_on_processed", using: :btree
+  add_index "albums", ["user_id"], name: "index_albums_on_user_id", using: :btree
 
   create_table "invitations", force: true do |t|
     t.integer  "sender_id"
@@ -30,14 +45,6 @@ ActiveRecord::Schema.define(version: 20131120050243) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "photos", force: true do |t|
-    t.integer  "reservation_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "photos", ["reservation_id"], name: "index_photos_on_reservation_id", using: :btree
 
   create_table "reservations", force: true do |t|
     t.string   "name"
