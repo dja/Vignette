@@ -4,12 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
+helper_method :current_user
+
 private
 
 def current_user
-@current_user ||= User.find(session[:user_id]) if session[:user_id]
+	user ||= User.find(session[:user_id]) if session[:user_id]
+	if user && user.type == "Photographer"
+		@current_user ||= Photographer.find(session[:user_id])
+	elsif user && user.type == "Customer"
+		@current_user ||= Customer.find(session[:user_id])
+	end
 end
-helper_method :current_user
-
 
 end

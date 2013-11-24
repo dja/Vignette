@@ -38,7 +38,7 @@ h5 {
 ::-moz-selection { background: #5af; color: #fff; text-shadow: none; }
 ::selection { background: #5af; color: #fff; text-shadow: none; }
 
-input {
+input[type="text"] {
 	font-family: 'Gotham SSm A', 'Gotham SSm B';
 	font-weight: 700;
 	font-style: normal;

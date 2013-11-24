@@ -10,10 +10,20 @@ class PhotographersController < ApplicationController
 	end
 
 	def show
+		@reservations = Reservation.find(:all, conditions: { photographer_id: nil })
 		if @photographer == current_user
-			respond_with(@photographer)
+			respond_with(@photographer, @reservations)
 		else
 			redirect_to root_url
+		end
+	end
+
+	def accept
+		@reservation = Reservation.find(params[:reservation])
+		if @reservation.save!
+			render :status => :ok, :json => { status: 'SUCCESS', url: reservation_path(@reservation) }
+		else
+			render :status => 422, :json => { status: 'FAILED' }
 		end
 	end
 

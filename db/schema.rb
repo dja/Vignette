@@ -17,7 +17,8 @@ ActiveRecord::Schema.define(version: 20131123000947) do
   enable_extension "plpgsql"
 
   create_table "albums", force: true do |t|
-    t.integer  "user_id",                             null: false
+    t.integer  "photographer_id"
+    t.integer  "customer_id"
     t.string   "direct_upload_url",                   null: false
     t.string   "upload_file_name"
     t.string   "upload_content_type"
@@ -28,8 +29,8 @@ ActiveRecord::Schema.define(version: 20131123000947) do
     t.datetime "updated_at"
   end
 
-  add_index "albums", ["processed"], name: "index_albums_on_processed", using: :btree
-  add_index "albums", ["user_id"], name: "index_albums_on_user_id", using: :btree
+  add_index "albums", ["customer_id"], name: "index_albums_on_customer_id", using: :btree
+  add_index "albums", ["photographer_id"], name: "index_albums_on_photographer_id", using: :btree
 
   create_table "invitations", force: true do |t|
     t.integer  "sender_id"

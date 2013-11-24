@@ -1,14 +1,13 @@
 class CreateAlbums < ActiveRecord::Migration
   def change
     create_table :albums do |t|
-      t.integer :user_id, null: false
+      t.references :photographer, index: true
+      t.references :customer, index: true
       t.string :direct_upload_url, null: false
       t.attachment :upload
-      t.boolean :processed, default: false, null: false
+      t.boolean :processed, default: false, null: false, index: true
       
       t.timestamps
     end
-    add_index :albums, :user_id
-    add_index :albums, :processed
   end
 end

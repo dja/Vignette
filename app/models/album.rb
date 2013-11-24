@@ -1,9 +1,9 @@
 class Album < ActiveRecord::Base
  
   # Environment-specific direct upload url verifier screens for malicious posted upload locations.
-  DIRECT_UPLOAD_URL_FORMAT = %r{\Ahttps:\/\/s3\.amazonaws\.com\/vignette-#{!Rails.env.production? ? "\\-#{Rails.env}" : ''}\/(?<path>uploads\/.+\/(?<filename>.+))\z}.freeze
+  DIRECT_UPLOAD_URL_FORMAT = %r{\Ahttps:\/\/s3-us-west-2\.amazonaws\.com\/vignette-#{!Rails.env.production? ? "\\-#{Rails.env}" : ''}\/(?<path>uploads\/.+\/(?<filename>.+))\z}.freeze
   
-  belongs_to :user
+  belongs_to :photographer, :customer
   has_attached_file :upload
  
   validates :direct_upload_url, presence: true, format: { with: DIRECT_UPLOAD_URL_FORMAT }
