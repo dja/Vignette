@@ -11,17 +11,17 @@ class CreateUsers < ActiveRecord::Migration
         t.string :username
     	t.string :link
         t.string :image
-    	t.string :user_location
-    	t.string :meetup_location
-    	t.string :latitude
-        t.string :longitude
-    	t.string :photographer_location
+        t.string :user_location
+        t.string :address
+        t.string :city
+        t.string :state
+        t.string :zip
     	t.integer :rating
     	t.integer :radius
     	t.string :camera
     	t.string :bio
     	t.string :fact
-    	t.boolean :available
+    	t.boolean :available, default: false
         t.string :uid
         t.string :provider
         t.string :oauth_token
