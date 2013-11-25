@@ -189,9 +189,10 @@ input:-ms-input-placeholder {
 /* REQUEST NOTIFICATIONS */
 
 .notification {
+	display: inline-block;
 	width: 300px;
 	height: 100px;
-	margin: 0 auto;
+	margin: 25px;
 	border: 2px solid gray;
 	border-radius: 3px;
 	background-color: blueviolet;
@@ -241,18 +242,18 @@ input:-ms-input-placeholder {
 	height: 30px;
 	border: none;
 	margin-bottom: 5px;
-	color: white;
 	font-family: 'Gotham SSm A', 'Gotham SSm B';
 	font-weight: 500;
-	background-color: #dddedd;
 }
 
-button#accept {
-	color: #45c34b;
-	box-shadow: 0 0 3px #45c34b;
+.accept {
+	color: white;
+	box-shadow: 0 0 3px #87e29d;
+	background-color: #87e29d;
 }
 
-button#decline {
-	color: #ff4848;
-	box-shadow: 0 0 3px #ff4848;
+.decline {
+	color: white;
+	box-shadow: 0 0 3px #f3575a;
+	background-color: #f3575a;
 }

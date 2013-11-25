@@ -18,8 +18,8 @@
 						<i class="ion-navigate"></i><a>2.0 mi</a>
 					</div>
 					<div class="request-response">
-						<button type="button" id="accept">Accept</button>
-						<button type="button" id="decline">Decline</button>
+						<%= button_tag "Accept", class: "accept", id: r.lat+","+r.lng+",#{r.id}" %>
+						<%= button_tag "Decline", class: "decline", id: r.lat+","+r.lng+",#{r.id}" %>
 					</div>
 				</div>
 				<%#end%>
@@ -34,3 +34,15 @@
 		<%= link_to "Edit Profile", edit_photographer_url %>
 	</div>
 </div>
+
+<script>
+  $(function(){
+    $(".accept").click(function(){
+    	var id = this.id;
+    	// alert(id);
+      $.post('/photographers/accept', { accept: id }, function(data,status){
+      	$(this).hide;
+      });
+    });
+  });
+</script>

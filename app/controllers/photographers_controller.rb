@@ -19,11 +19,16 @@ class PhotographersController < ApplicationController
 	end
 
 	def accept
-		@reservation = Reservation.find(params[:reservation])
-		if @reservation.save!
-			render :status => :ok, :json => { status: 'SUCCESS', url: reservation_path(@reservation) }
+		accept_id = params[:accept]
+		lat = accept_id.split(/,/)[0]
+		lng = accept_id.split(/,/)[1]
+		id = accept_id.split(/,/)[2]
+		reservation = Reservation.find_by_id(id)
+		reservation.photographer = current_user
+		if reservation.save!
+			render status: :ok, json: { status: 'SUCCESS', name: reservation.photographer.name }
 		else
-			render :status => 422, :json => { status: 'FAILED' }
+			render status: 422, json: { status: 'FAILED' }
 		end
 	end
 
