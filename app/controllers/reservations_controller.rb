@@ -3,8 +3,12 @@ class ReservationsController < ApplicationController
 	respond_to :html, :json
 
 	def new
-		if current_user.type != "Customer"
-			redirect_to current_user
+		if current_user
+			if current_user.type != "Customer"
+				redirect_to current_user
+			end
+		else
+			redirect_to root_url
 		end
 	end
 

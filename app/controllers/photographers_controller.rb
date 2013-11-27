@@ -18,7 +18,7 @@ class PhotographersController < ApplicationController
 		available = params[:available]
 		if available == true
 			current_user.available = false
-		else
+		elsif available == false
 			current_user.available = true
 		end
 		if current_user.save!

@@ -8,4 +8,9 @@ $(function() {
   $('#s3-uploader').bind('s3_upload_failed', function(e, content) {
     return alert(content.filename + ' failed to upload');
   });
+  $('#s3-uploader').bind("s3_upload_complete", function(e, content) {
+    $('#drag-here').hide();
+    $('form').hide();
+  	$('#upload-image').append('<img class="upload-image" src="'+content.url+'" />');
+  });
 });
