@@ -11,10 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131120050243) do
+ActiveRecord::Schema.define(version: 20131126222034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "albums", force: true do |t|
+    t.integer  "photographer_id"
+    t.integer  "customer_id"
+    t.string   "direct_upload_url",                   null: false
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
+    t.boolean  "processed",           default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "albums", ["customer_id"], name: "index_albums_on_customer_id", using: :btree
+  add_index "albums", ["photographer_id"], name: "index_albums_on_photographer_id", using: :btree
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "invitations", force: true do |t|
     t.integer  "sender_id"
@@ -30,14 +62,6 @@ ActiveRecord::Schema.define(version: 20131120050243) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "photos", force: true do |t|
-    t.integer  "reservation_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "photos", ["reservation_id"], name: "index_photos_on_reservation_id", using: :btree
 
   create_table "reservations", force: true do |t|
     t.string   "name"
@@ -66,16 +90,16 @@ ActiveRecord::Schema.define(version: 20131120050243) do
     t.string   "link"
     t.string   "image"
     t.string   "user_location"
-    t.string   "meetup_location"
-    t.string   "latitude"
-    t.string   "longitude"
-    t.string   "photographer_location"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
     t.integer  "rating"
     t.integer  "radius"
     t.string   "camera"
     t.string   "bio"
     t.string   "fact"
-    t.boolean  "available"
+    t.boolean  "available",        default: false
     t.string   "uid"
     t.string   "provider"
     t.string   "oauth_token"

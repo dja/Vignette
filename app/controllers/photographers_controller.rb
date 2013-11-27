@@ -10,10 +10,36 @@ class PhotographersController < ApplicationController
 	end
 
 	def show
-		if @photographer == current_user
-			respond_with(@photographer)
+		@reservations = Reservation.find(:all, conditions: { photographer_id: nil })
+		respond_with(@photographer, @reservations)
+	end
+
+	def changeavailable
+		available = params[:available]
+		if available == true
+			current_user.available = false
+		elsif available == false
+			current_user.available = true
+		end
+		if current_user.save!
+			render status: :ok, json: { status: 'SUCCESS', available: available }
 		else
-			redirect_to root_url
+			render status: 422, json: { status: 'FAILED' }
+		end
+	end
+
+	def accept
+		accept_id = params[:accept]
+		lat = accept_id.split(/,/)[0]
+		lng = accept_id.split(/,/)[1]
+		id = accept_id.split(/,/)[2]
+		reservation = Reservation.find_by_id(id)
+		reservation.photographer = current_user
+		current_user.available = false
+		if reservation.save!
+			render status: :ok, json: { status: 'SUCCESS', name: reservation.photographer.name }
+		else
+			render status: 422, json: { status: 'FAILED' }
 		end
 	end
 
@@ -49,9 +75,10 @@ class PhotographersController < ApplicationController
 											:link,
 											:image,
 											:user_location,
-											:latitude,
-											:longitude,
-											:photographer_location,
+											:address,
+											:city,
+											:state,
+											:zip,
 											:rating,
 											:radius,
 											:camera,

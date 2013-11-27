@@ -38,7 +38,7 @@ h5 {
 ::-moz-selection { background: #5af; color: #fff; text-shadow: none; }
 ::selection { background: #5af; color: #fff; text-shadow: none; }
 
-input {
+input[type="text"] {
 	font-family: 'Gotham SSm A', 'Gotham SSm B';
 	font-weight: 700;
 	font-style: normal;
@@ -166,8 +166,13 @@ input:-ms-input-placeholder {
 
 .user-location {
 	width: 450px;
-	margin: 0 auto 30px auto;
+	margin: 30px auto;
 	text-align: left;
+}
+
+.user-location h5 {
+	text-align: center;
+	margin: 10px 0;
 }
 
 .user-location input {
@@ -176,25 +181,62 @@ input:-ms-input-placeholder {
 	margin: 5px;
 }
 
-.user-location input:nth-child(3) {
+.user-location input:nth-child(4) {
 	width: 60px;
 	text-align: center;
 }
 
-.user-location input:nth-child(4) {
+.user-location input:nth-child(5) {
 	width: 75px;
 	text-align: center;
 }
 
+.profile-footer {
+	
+}
+
+.profile-footer a:link {
+	font-size: 20px;
+	font-family: 'Landmark Regular A', 'Landmark Regular B';
+	font-weight: 400;
+	font-style: normal;
+	text-decoration: none;
+	border: 2px solid #0066cb;
+	border-radius: 3px;
+	padding: 6px 12px;
+}
+
 /* REQUEST NOTIFICATIONS */
 
+.incoming-requests {
+	min-height: 120px;
+}
+
+.availability {
+	font-size: 20px;
+	font-family: 'Landmark Regular A', 'Landmark Regular B';
+	font-weight: 400;
+	font-style: normal;
+	border-radius: 3px;
+	border: none;
+	padding: 6px 12px;
+	background-color: #0066cb;
+	color: white;
+}
+
+.incoming-requests h5 {
+	margin-bottom: 6px;
+}
+
 .notification {
+	display: inline-block;
 	width: 300px;
 	height: 100px;
-	margin: 0 auto;
-	border: 2px solid gray;
+	margin: 25px;
+	border: 1px solid gray;
+	box-shadow: 0 0 6px gray;
 	border-radius: 3px;
-	background-color: blueviolet;
+	background-color: #0066cb;
 }
 
 .customer-info {
@@ -204,13 +246,17 @@ input:-ms-input-placeholder {
 }
 
 .customer-info img {
-	width: 80px;
+	width: 60px;
 	float: left;
-	margin: -50px 0 0 -40px;
-	padding-right: 5px; 
+	margin: -55px 0 0 -30px;
+	box-shadow: 0 0 6px gray;
 }
 
-.customer-info h3 {
+.customer-info-center {
+	margin: 0 12px;
+}
+
+.customer-info-center h3 {
 	font-size: 20px;
 	color: white;
 	font-family: 'Gotham SSm A', 'Gotham SSm B';
@@ -218,15 +264,15 @@ input:-ms-input-placeholder {
 	margin-bottom: 10px;
 }
 
-.customer-info i {
-	color: white;
+.customer-info-center i {
+	color: #f2f2f2;
 	margin-right: 5px;
-	text-shadow: 1px 1px 1px black;
 }
 
 .customer-info a {
 	font-family: 'Gotham SSm A', 'Gotham SSm B';
 	font-weight: 500;
+	color: #f2f2f2;
 }
 
 .request-response {
@@ -241,18 +287,19 @@ input:-ms-input-placeholder {
 	height: 30px;
 	border: none;
 	margin-bottom: 5px;
+	font-family: 'Landmark Regular A', 'Landmark Regular B';
+	font-weight: 400;
+	font-style: normal;
+}
+
+.accept {
 	color: white;
-	font-family: 'Gotham SSm A', 'Gotham SSm B';
-	font-weight: 500;
-	background-color: #dddedd;
+	box-shadow: 0 0 3px #87e29d;
+	background-color: #87e29d;
 }
 
-button#accept {
-	color: #45c34b;
-	box-shadow: 0 0 3px #45c34b;
-}
-
-button#decline {
-	color: #ff4848;
-	box-shadow: 0 0 3px #ff4848;
+.decline {
+	color: white;
+	box-shadow: 0 0 3px #f3575a;
+	background-color: #f3575a;
 }

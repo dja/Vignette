@@ -9,9 +9,7 @@ class SessionsController < ApplicationController
   def create
     if session[:current_token] == nil
       user = User.login_from_omniauth(env["omniauth.auth"])
-      if user == 'not ready'
-        redirect_to root_url
-      elsif user == 'closed'
+      if user == 'closed'
         redirect_to new_invitation_url
       elsif user.type == "Customer"
         @customer = user
